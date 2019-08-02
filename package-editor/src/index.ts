@@ -1,5 +1,12 @@
-export { Hello };
+export { BuildApplication };
 
-function Hello(msg: string) {
-    console.log(msg);
+
+class MyApplication {
+    getAppName() {
+        return "Leon App";
+    }
+}
+
+function BuildApplication() {
+    return new MyApplication();
 }

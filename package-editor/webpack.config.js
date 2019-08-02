@@ -4,6 +4,11 @@ const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 1000
+    },
     module: {
         rules: [
             {
@@ -23,6 +28,7 @@ module.exports = {
     ],
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        libraryTarget: "commonjs2"
     }
 };
