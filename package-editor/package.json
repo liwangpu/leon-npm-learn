@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/liwangpu/leon-npm-learn#readme",
   "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
     "file-loader": "^4.1.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
