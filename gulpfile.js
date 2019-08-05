@@ -1,16 +1,32 @@
-const gulp = require('gulp');
+const { src, dest, series, watch } = require('gulp');
+const uglify = require('gulp-uglify');
+const clean = require('gulp-clean');
+const merge = require('merge2');
 const ts = require('gulp-typescript');
-const merge = require('merge2');  // Requires separate installation
-
 let tsProject = ts.createProject('tsconfig.json');
 
 
-gulp.task('default', function () {
-    var tsResult = gulp.src('lib/**/*.ts')
+function cleanReleaseTask(cb) {
+    src('release/**/*', { read: false }).pipe(clean());
+    cb();
+}
+
+function compileTsTask(cb) {
+    let tsResult = src("lib/**/*.ts")
         .pipe(tsProject());
 
-    return merge([
-        tsResult.dts.pipe(gulp.dest('release/types')),
-        tsResult.js.pipe(gulp.dest('release'))
+    merge([
+        tsResult.dts.pipe(dest('release/types')),
+        tsResult.js.pipe(uglify()).pipe(dest('release'))
     ]);
-});
+    cb();
+}
+
+
+function watchTsChangeTask(cb) {
+    watch('lib/**/*.ts', { ignoreInitial: true }, compileTsTask);
+    cb();
+}
+
+exports.watch = watchTsChangeTask;
+exports.default = series(cleanReleaseTask, compileTsTask);

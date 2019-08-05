@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp"
+    "test": "node src/main.js",
+    "build": "gulp && gulp watch"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,10 @@
   "homepage": "https://github.com/liwangpu/leon-npm-learn#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
     "gulp-typescript": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1",
     "merge2": "^1.2.4",
     "typescript": "^3.5.3"
   }

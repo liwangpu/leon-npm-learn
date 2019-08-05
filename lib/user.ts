@@ -7,7 +7,7 @@ export class User {
     }
 
     greet() {
-        console.log(`Hello,I'm ${this.name},${this.age} years old!`);
+        console.log(`Hello,I'm ${this.name},${this.age} years old!`); 
     }
 }
 
