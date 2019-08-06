@@ -12,21 +12,27 @@ function cleanReleaseTask(cb) {
 }
 
 function compileTsTask(cb) {
-    let tsResult = src("lib/**/*.ts")
+    let tsResult = src("src/**/*.ts")
         .pipe(tsProject());
 
     merge([
-        tsResult.dts.pipe(dest('release/types')),
+        tsResult.dts.pipe(dest('release')),
         tsResult.js.pipe(uglify()).pipe(dest('release'))
     ]);
     cb();
 }
 
+function copyPackageResourceTask(cb) {
+    src("package.json").pipe(dest('release'));
+    src("LICENSE").pipe(dest('release'));
+    src("README.md").pipe(dest('release'));
+    cb();
+}
 
 function watchTsChangeTask(cb) {
-    watch('lib/**/*.ts', { ignoreInitial: true }, compileTsTask);
+    watch('src/**/*.ts', { ignoreInitial: true }, compileTsTask);
     cb();
 }
 
 exports.watch = watchTsChangeTask;
-exports.default = series(cleanReleaseTask, compileTsTask);
+exports.default = series(cleanReleaseTask, copyPackageResourceTask, compileTsTask);
