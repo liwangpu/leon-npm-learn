@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "nodemon test/main.js",
+    "test": "nodemon tests/main.js",
     "build": "gulp && gulp watch"
   },
   "repository": {
