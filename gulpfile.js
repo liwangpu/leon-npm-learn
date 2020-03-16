@@ -1,6 +1,5 @@
 const { src, dest, series, watch } = require('gulp');
 const uglify = require('gulp-uglify');
-const clean = require('gulp-clean');
 const merge = require('merge2');
 const del = require("del");
 const ts = require('gulp-typescript');
@@ -36,16 +35,8 @@ function copyPackageResourceTask(cb) {
     ]).end(cb);
 }
 
-// function watchTsChangeTask(cb) {
-//     watch(['src/**/*.ts', 'tsconfig.json'], { ignoreInitial: true }, compileTsTask).on('end', cb)
-// }
-
-// exports.watch = watchTsChangeTask;
-// exports.default = series(cleanReleaseTask, copyPackageResourceTask, compileTsTask);
-
 function watchAndReCompileTask(cb) {
     watch(['src/**/*.ts', 'tsconfig.json'], { ignoreInitial: true }, series(compileTsTask)).on('end', cb);
-}//watchAndReCompile
-
+}
 
 exports.default = series(cleanReleaseTask,copyPackageResourceTask, compileTsTask, watchAndReCompileTask);
