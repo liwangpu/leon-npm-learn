@@ -1,33 +1,20 @@
 {
-    "name": "leon-npm-learn",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "types": "index.d.ts",
-    "scripts": {
-        "test": "nodemon test/main.js",
-        "build": "gulp && gulp watch"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/liwangpu/leon-npm-learn.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/liwangpu/leon-npm-learn/issues"
-    },
-    "homepage": "https://github.com/liwangpu/leon-npm-learn#readme",
-    "devDependencies": {
-        "gulp": "^4.0.2",
-        "gulp-clean": "^0.4.0",
-        "gulp-typescript": "^6.0.0-alpha.1",
-        "gulp-uglify": "^3.0.2",
-        "gulp-watch": "^5.0.1",
-        "merge2": "^1.2.4",
-        "nodemon": "^1.19.1",
-        "typescript": "^3.8.3",
-        "del": "^5.1.0"
-    }
+  "name": "leon-npm-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build:app1": "lerna run build --scope @custom/app1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.1.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
